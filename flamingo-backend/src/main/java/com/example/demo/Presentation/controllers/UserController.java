@@ -3,6 +3,8 @@ package com.example.demo.Presentation.controllers;
 import com.example.demo.Buisness.DTOs.RequestDTOs.UserRequestDto;
 import com.example.demo.Buisness.Services.interfaces.UserService;
 import com.example.demo.Presentation.Mappers.impl.UserMapperImpl;
+import com.example.demo.Presentation.ResponseViewModel.UserResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +21,13 @@ public class UserController {
     }
 
     @PostMapping("/Register")
-    public UserRequestDto addUser(@RequestBody UserRequestDto user){
-        userService.addUser(UserMapperImpl.fromDtoToEntity(user));
-        return user;
+    public UserResponse addUser(@RequestBody UserRequestDto user){
+        return userService.addUser(UserMapperImpl.fromDtoToEntity(user));
+
     }
 
     @PostMapping("/Login")
-    public String login(@RequestBody UserRequestDto user){   
+    public UserResponse login(@RequestBody UserRequestDto user){   
         return userService.getEmailAndPassword(UserMapperImpl.fromDtoToEntity(user));
                    
     }

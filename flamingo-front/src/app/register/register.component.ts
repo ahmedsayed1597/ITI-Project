@@ -55,9 +55,9 @@ export class RegisterComponent implements OnInit {
       this._UserService.signUp(this.registerationForm.value).subscribe({
         next: (response) => {
 
-          this.responseMessage = response;
+          this.responseMessage = response.message;
           console.log(this.responseMessage)
-          if(response.message == 'User created'){
+          if(response.message == 'User Created'){
             this._Router.navigate(['Login'])
           }
         }

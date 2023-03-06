@@ -30,11 +30,11 @@ export class LoginComponent implements OnInit {
       this._UserService.signIn(this.logInForm.value).subscribe({
         next: (response) => {
           console.log(this.logInForm.value);
-          this.responseMessage = response;
+          this.responseMessage = response.message;
           console.log(this.responseMessage)
-          // if(response.message == 'User created'){
-          //   this._Router.navigate(['Home'])
-          // }
+          if(response.message == 'Succesfull Login'){
+            this._Router.navigate(['Home'])
+          }
         }
       ,
       error: (err) => {console.log(err);}
